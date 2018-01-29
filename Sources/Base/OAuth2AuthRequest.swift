@@ -144,10 +144,10 @@ open class OAuth2AuthRequest {
 	- returns: NSURLComponents representing the receiver
 	*/
 	func asURLComponents() throws -> URLComponents {
-		let comp = URLComponents(url: url, resolvingAgainstBaseURL: false)
-		guard var components = comp, "https" == components.scheme else {
+		var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+		/*guard var components = comp, "https" == components.scheme else {
 			throw OAuth2Error.notUsingTLS
-		}
+		}*/
 		if .GET == method && params.count > 0 {
 			components.percentEncodedQuery = params.percentEncodedQueryString()
 		}
